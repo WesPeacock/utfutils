@@ -21,7 +21,7 @@ locate CharName.pm
 # /usr/lib/perl5/Unicode/CharName.pm
 =cut
 
-use Unicode::CharName qw(uname ublock);
+use Unicode::UCD qw(charinfo); # see Camel book v 4 p307
 
 # the other way - perl default:
 # see http://perldoc.perl.org/charnames.html
@@ -52,6 +52,7 @@ sub printUchar {
   my $enc_ = encode($encodingChoice, $_);
   my @uvals = unpack("U*", $_);
   my @bytevals = unpack("C*", $enc_);
+  my $ci = charinfo(int($uvals[0]));
   print join(" ",
     "'" . $enc_ . "'",
     "u:",
@@ -61,7 +62,7 @@ sub printUchar {
     join(",", map(sprintf("%d", $_), @bytevals)),
     "[" . join(",", map(sprintf("0x%02X", $_), @bytevals)) . "]",
     "n:",
-    uname(int($uvals[0])) . " [" . ublock(int($uvals[0])) . "]"
+    $$ci{name} . " [" . $$ci{block} . "]"
   );
   print "\n";
 }
