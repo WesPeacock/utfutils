@@ -16,3 +16,9 @@ For each character in the file print:
 ### addcharname.pl
 If a text line has a Unicode reference (i.e., U+XXXX), then append the the text '\<TAB\>Unicode Name:' followed by the Unicode name of the reference.
 This script is intended to enhance the listings produced by  *UnicodeCCount.exe* program.
+
+### Ucode.pl & Udecod.pl
+*Ucode.pl*  Convert text of certain SFM fields to Unicode reference (i.e., U+XXXX)
+*Udecode.pl* Convert the Unicode references to text.
+Ucode.pl changes a file with characters that FLEx can't import into a form that can be imported.
+Once they are imported, a Udecode call from within FLEx could convert them to the Unicode text
